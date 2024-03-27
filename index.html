@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veri Gönderme Sayfası</title>
+</head>
+<body>
+
+<input type="text" id="mesaj" placeholder="Bir mesaj yazın">
+<button onclick="veriGonder()">Gönder</button>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+<script>
+  // Firebase projenizin yapılandırmasını buraya ekleyin
+  var firebaseConfig = {
+    apiKey: "AIzaSyD85oU_2Zz24jtb-1Z5NUycFBj73OnWe5k",
+    authDomain: "denibproje.firebaseapp.com",
+    databaseURL: "https://denibproje.firebaseio.com",
+    projectId: "denibproje",
+    storageBucket: "denibproje.appspot.com",
+    messagingSenderId: "639198472894",
+    appId: "1:639198472894:web:a401a7d38e8054b3a54cef",
+  };
+  // Firebase'i başlat
+  firebase.initializeApp(firebaseConfig);
+  
+  function veriGonder() {
+    var database = firebase.database();
+    var mesaj = document.getElementById('mesaj').value;
+    database.ref('mesajlar/').push().set({
+      mesaj: mesaj,
+    });
+  }
+</script>
+
+</body>
+</html>
